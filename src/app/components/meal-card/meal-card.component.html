@@ -1,0 +1,74 @@
+<ion-card   class="restaurantCard" >
+
+    <!-- Number of amount of selected meal :: initial Order For Regular User case-->
+    <div  *ngIf="!isMyRestaurantMeal && isInitialOrder && orderService.initOrderMemo[meal.id]" class="headerIcon numOfSender">
+      <ion-badge color="primary">{{orderService.initOrderMemo[meal.id]}}</ion-badge>
+    </div>
+    <!-- Number of amount of selected meal :: Placed Order For Regular and Owner User case-->
+    <div  *ngIf="!isInitialOrder && meal" class="headerIcon numOfSender">
+      <ion-badge color="primary">{{meal.amount}}</ion-badge>
+    </div>
+
+<ion-card-content> 
+
+  <!-- info row -->
+   <ion-row style="padding-inline-end: 20px;">
+    <ion-col>
+      <!-- Name of the meal -->
+      <ion-row>
+        <div class="label title">
+          <ion-label>
+            <h2 color="light">{{meal.name}}
+            </h2>
+          </ion-label>
+        </div>
+      </ion-row>
+      <!-- Description of the meal -->
+      <ion-row>
+        <div class="label description">
+          <ion-label>
+            <h2 color="light">{{meal.description}}
+            </h2>
+          </ion-label>
+        </div>
+      </ion-row>
+      <!-- Price of the meal -->
+      <ion-row style="margin-top: 8px;">
+        <div class="label description">
+          <ion-label>
+            <h2 color="light">Price: {{meal.price}}
+            </h2>
+          </ion-label>
+        </div>
+      </ion-row>
+    </ion-col>
+  </ion-row> 
+  <div class="hor-seperator"></div>
+  <ion-row>
+      <div class="block-icons">
+        
+          <!-- delete Button, Only for Owner and when not inside order details page -->
+          <ion-icon *ngIf="isMyRestaurantMeal && !isInsideOrderPage" slot="icon" name="trash" class="ion-float-right" (click)="deleteRestaurantMeal($event)" > </ion-icon>          
+          <!-- edit Button, Only for Owner and when not inside order details page -->
+          <ion-icon *ngIf="isMyRestaurantMeal && !isInsideOrderPage" slot="icon" name="create" class="ion-float-right ion-margin-end" (click)="editRestaurantMeal($event)"> </ion-icon>
+          <!-- Increment and Decrement number of meal Buttons -->
+          <!-- Only for Regular User,, for initial order -->
+          <ion-button *ngIf="!isMyRestaurantMeal && isInitialOrder"
+            class="rateBtn ion-no-padding ion-no-margin ion-float-right"
+              shape="round" fill="outline"
+               (click)="addMealToOrder($event)"
+               [ngClass]="{'disabled': false}">
+              <ion-icon class="iconInButton" slot="start" name="add"></ion-icon>
+            </ion-button>
+            <ion-icon *ngIf="!isMyRestaurantMeal && isInitialOrder" slot="icon"  name="cart" class="ion-float-right"></ion-icon>
+            <ion-button *ngIf="!isMyRestaurantMeal && isInitialOrder"
+            class="rateBtn ion-no-padding ion-no-margin ion-float-right"
+              shape="round" fill="outline"
+               (click)="removeMealFromOrder($event)"
+               [ngClass]="{'disabled': orderService.initOrderMemo[meal.id] == undefined || orderService.initOrderMemo[meal.id] == 0}">
+              <ion-icon class="iconInButton" slot="start" name="remove"></ion-icon>
+            </ion-button>
+        </div>
+  </ion-row>
+</ion-card-content>
+</ion-card>

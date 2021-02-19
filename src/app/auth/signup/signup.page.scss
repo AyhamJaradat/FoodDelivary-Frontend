@@ -1,0 +1,122 @@
+ion-content{
+  --background: var(--biopeo-background-color);
+}
+.main{
+  // height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+ion-card{
+  --background: #fff;
+  // box-shadow: none;
+  // -webkit-box-shadow:none;
+}
+@media screen and (min-width:768px){
+  ion-card{
+      width: 500px;
+      margin: auto;
+  }
+}
+ion-card.redirectingCard{
+  width: unset;
+  text-align: center;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+ion-label.inputLabel{
+  color: #686868;
+}
+.img-logo{
+  height:150px;
+  width:150px;
+}
+.logo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  ion-text{
+      // padding: 10px;
+      justify-content: center;
+      font-size: 2em;
+      font-weight: 300;
+  }
+}
+
+.error-message
+{
+  // color: rgba(255, 0, 0, 0.658);
+  color: rgb(197, 1, 1);
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.sign-up-alternative {
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+
+  button {
+    font-size: small;
+  }
+  .question {
+    color: gray;
+    height: 30px;
+    line-height: 32px;
+  }
+}
+.sign-up-button {
+  opacity: 1 !important;
+  height: 3.5em;
+  font-size: 1.2em;
+  font-weight: 400;
+  color: white;
+  text-transform: capitalize;
+}
+
+.sign-in-button {
+  // font-weight: 400;
+  text-transform: capitalize;
+  // font-size: 1.2em !important;
+}
+
+
+
+
+.radioRowContainer{
+  border-bottom: 1px solid #ccc;
+  .radioContainer {
+    font-size: 16px;
+    justify-content: center;
+    border-bottom: 0 !important;
+    padding: 15px 0;
+    text-align: center;
+    .active {
+      color: #e60e64;
+    }
+    .inactive {
+      color: black;
+    }
+    .bold{
+      font-weight: bold;
+    }
+  }
+  .radioText {
+    margin-bottom: 2%;
+  }
+  .float-left {
+    float: left
+  }
+  .label {
+    font-size: 1em;
+  }
+
+}
+
+

@@ -1,0 +1,116 @@
+ion-content{
+  --background: var(--biopeo-background-color);
+}
+ion-card{
+  --background:#fff;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+ion-card.profile-card{
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+.main-page-card{
+
+  .headerIcon{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 25px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .settingIcon{
+      font-size: 20px;
+      color: #444;
+      margin: 0px 4px;
+    }
+  }
+
+  ion-card-header{
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+
+  .hor-seperator{
+    width: 100%;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(224, 224, 224);
+    align-self: center;
+    margin-left: 4px
+  }
+  .iconSize{
+    font-size: 22px;
+    color: var(--ion-color-primary);
+
+  }
+  .dFlexAlignItemCenter{
+    display: flex;
+    align-items: center;
+  }
+  .fontSize{
+    font-size: 14px;
+    color: var(--ion-color-primary);
+    margin-inline-end: 8px;
+  }
+  .mainButton{
+    text-transform:capitalize;
+    min-width: 200px;
+    margin: 0px;
+  }
+  .threeDots{
+    text-align: center;
+    color: var(--ion-color-primary);
+    font-size: 20px;
+    font-weight: bold;
+    height: 0px;
+    line-height: 0px;
+    margin-bottom: 16px;
+    margin-top: -3px;
+    letter-spacing: 0px;
+  }
+}
+
+.profile-card {
+
+  ion-avatar{
+    border: 1px solid #a2a2a2;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 4px;
+  }
+
+  .userSection{
+    display: flex;
+    align-items: center;
+    position: relative;
+    // justify-content: space-between;
+  
+    .userName{
+      font-size: 18px;
+       // color: #CC0000;
+    }
+    
+    .userDetail{
+      display: flex;
+      flex-direction: column;
+      margin: 20px;
+    }
+  }
+
+  .block-icons {
+    padding: 5px 15px;
+    ion-icon {
+      font-size: 28px;
+      // margin-right: 20px;
+      color: #444;
+    }
+  }
+  
+}

@@ -1,0 +1,206 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Profile Card -->
+  <ion-card class="profile-card main-page-card">
+    <div *ngIf="userDetails" class="userSection padding-horizontal">
+      <div class="userDetail">
+        <ion-label class="userName">Welcome</ion-label>
+        <ion-label class="userName" color="primary" style="    margin-left: 30px;">
+          {{userDetails.full_name}}
+        </ion-label>
+        <ion-text style="    margin-left: 30px;">{{userDetails.email}}</ion-text>
+      </div>
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>Role: {{userDetails.userRole==1?'Regular':'Owner'}}</ion-card-subtitle>
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <!-- Restaurants Card -->
+  <ion-card class="main-page-card">
+    <div class="headerIcon" (click)="goToRestaurantsPage()">
+      <ion-icon slot="end" name="arrow-round-forward" class=""></ion-icon>
+    </div>
+    <ion-card-header>
+
+      <div class="dFlexAlignItemCenter">
+        <ion-icon name="business" class="iconSize"></ion-icon>
+        <ion-label class="fontSize ion-padding-start">Restaurants</ion-label>
+        <ion-badge *ngIf="totalRestaurants>0 && !isRestaurantsLoading" color="light">{{totalRestaurants}}</ion-badge>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="hor-seperator"></div>
+      <div class="ion-padding" *ngIf="isRestaurantsLoading">
+        <list-content-loader></list-content-loader>
+      </div>
+      <div class="default-empty-content" *ngIf="totalRestaurants==0 && !isRestaurantsLoading">
+        <ion-row class="ion-justify-content-center">
+          <p class="ion-padding-bottom ion-padding-top " *ngIf="amIOwner">
+            <strong>Restaurants</strong> are the place to show your
+            <strong>Meals</strong>.
+            <br>Start by Creating a Restaurant.
+          </p>
+          <p class="ion-padding-bottom ion-padding-top " *ngIf="!amIOwner">
+            <strong>Oops</strong> there is no
+            <strong>Restaurants</strong> available now.
+            <br>Stay tuned.. new Restaurants are comming soon.
+          </p>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-button class="mainButton" shape="round" expand="block" fill="outline" (click)="goToRestaurantsPage()">Restaurants</ion-button>
+        </ion-row>
+      </div>
+      <div class="real-content" *ngIf="totalRestaurants>0 && !isRestaurantsLoading">
+        <ion-row class="ion-justify-content-center">
+          <p class="ion-padding-bottom ion-padding-top " *ngIf="amIOwner">
+            You have
+            <strong>{{totalRestaurants}} Restaurants</strong>.
+            <br>
+          </p>
+          <p class="ion-padding-bottom ion-padding-top " *ngIf="!amIOwner">
+            There are
+            <strong>{{totalRestaurants}} Restaurants </strong>Available.
+            <br>
+          </p>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-button class="mainButton" shape="round" expand="block" fill="outline" (click)="goToRestaurantsPage()">All Restaurants</ion-button>
+        </ion-row>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- Orders Card -->
+  <ion-card class="main-page-card">
+    <div class="headerIcon" (click)="goToOrdersPage()">
+      <ion-icon slot="end" name="arrow-round-forward" class=""></ion-icon>
+    </div>
+    <ion-card-header>
+
+      <div class="dFlexAlignItemCenter">
+        <ion-icon name="cart" class="iconSize"></ion-icon>
+        <ion-label class="fontSize ion-padding-start">Orders</ion-label>
+        <ion-badge *ngIf="totalOrders>0 && !isOrdersLoading" color="light">{{totalOrders}}</ion-badge>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="hor-seperator"></div>
+      <div class="ion-padding" *ngIf="isOrdersLoading">
+        <list-content-loader></list-content-loader>
+      </div>
+      <div class="default-empty-content" *ngIf="totalOrders==0 && !isOrdersLoading">
+        <ion-row class="ion-justify-content-center">
+          <p class="ion-padding-bottom ion-padding-top " *ngIf="amIOwner">
+            <strong>Orders</strong> are the users requests of
+            <strong>Meals</strong>.
+            <br>You have No comming Orders Yet
+          </p>
+          <p class="ion-padding-bottom ion-padding-top " *ngIf="!amIOwner">
+            You did not request any
+            <strong>Order</strong> yet.
+            <br>Start By requesting an Order.
+          </p>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-button class="mainButton" shape="round" expand="block" fill="outline" (click)="goToOrdersPage()">Orders</ion-button>
+        </ion-row>
+      </div>
+      <div class="real-content" *ngIf="totalOrders>0 && !isOrdersLoading">
+        <ion-row class="ion-justify-content-center">
+           <div class="ion-padding-bottom ion-padding-top " *ngIf="amIOwner">
+            You have a total of
+            <strong>{{totalOrders}}</strong> Orders.
+            <br>
+            <br>
+            <div *ngIf="pendindActionOrders>0">
+              <strong>{{pendindActionOrders}}</strong>
+              <span *ngIf="pendindActionOrders==1"> Order is </span>
+              <span *ngIf="pendindActionOrders>1"> Orders are </span> waiting for your action.
+            </div>
+          </div>
+          <div class="ion-padding-bottom ion-padding-top " *ngIf="!amIOwner">
+            You have requested a total of
+            <strong>{{totalOrders}}</strong> Orders.
+            <br>
+            <br>
+            <div *ngIf="pendindActionOrders>0">
+              <strong>{{pendindActionOrders}}</strong>
+              <span *ngIf="pendindActionOrders==1"> Order is </span>
+              <span *ngIf="pendindActionOrders>1"> Orders are </span> waiting for your action.
+            </div>
+          </div> 
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-button class="mainButton" shape="round" expand="block" fill="outline" (click)="goToOrdersPage()">All Orders</ion-button>
+        </ion-row>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+    <!-- Customers Card -->
+    <ion-card *ngIf="amIOwner" class="main-page-card">
+        <div class="headerIcon" (click)="goToCustomersPage()">
+          <ion-icon slot="end" name="arrow-round-forward" class=""></ion-icon>
+        </div>
+        <ion-card-header>
+    
+          <div class="dFlexAlignItemCenter">
+            <ion-icon name="people" class="iconSize"></ion-icon>
+            <ion-label class="fontSize ion-padding-start">Customers</ion-label>
+            <ion-badge *ngIf="totalCustomers>0 && !isCustomersLoading" color="light">{{totalCustomers}}</ion-badge>
+          </div>
+        </ion-card-header>
+    
+        <ion-card-content>
+          <div class="hor-seperator"></div>
+          <div class="ion-padding" *ngIf="isCustomersLoading">
+            <list-content-loader></list-content-loader>
+          </div>
+          <div class="default-empty-content" *ngIf="totalCustomers==0 && !isCustomersLoading">
+            <ion-row class="ion-justify-content-center">
+              <p class="ion-padding-bottom ion-padding-top " >
+                <strong>Customers</strong> are the people who requested food from your restaurants.
+                <br>You have No Customers Yet.
+              </p>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-button class="mainButton" shape="round" expand="block" fill="outline" (click)="goToCustomersPage()">Customers</ion-button>
+            </ion-row>
+          </div>
+          <div class="real-content" *ngIf="totalCustomers>0 && !isCustomersLoading">
+            <ion-row class="ion-justify-content-center">
+              <div class="ion-padding-bottom ion-padding-top ">
+                You have
+                <strong>{{totalCustomers}} Customers</strong>.
+                <br>
+                <br>
+           
+                <div *ngIf="blockedCustomers>0">
+              <strong>{{blockedCustomers}}</strong>
+              <span *ngIf="blockedCustomers==1"> Customer is </span>
+              <span *ngIf="blockedCustomers>1"> Customers are </span> Blocked.
+            </div>
+          </div>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-button class="mainButton" shape="round" expand="block" fill="outline" (click)="goToCustomersPage()">All Customers</ion-button>
+            </ion-row>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>

@@ -1,0 +1,63 @@
+.biopeo-icon {
+    width: 20px;
+  }
+  ion-content{
+    --background: var(--biopeo-background-color);
+  }
+  ion-list{
+    background: var(--biopeo-background-color);
+    padding-top: 0px;
+  }
+ ion-icon{
+  color: var(--ion-color-primary);
+}
+ion-item{
+  margin: 4px 0px;
+}
+ion-header.head{
+  background: var(--ion-color-primary);
+  .logo-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // padding: 0px 24px 0px 24px;
+    padding: 0px 40px;
+    .logo-container {
+      width: 100px;
+    }
+    // img {
+    //   width: 100px;
+    // }
+    .title {
+      // padding: 0 10px 0 10px;
+      width: fit-content;
+      strong {
+        color: white;
+        font-weight: bold;
+        font-size: 28px;
+      }
+    }
+  }
+  .slogan-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    text-align: center;
+  
+    // .title {
+    //   color: white;
+    //   font-weight: bold;
+    //   font-size: 28px;
+    // }
+    .subtitle {
+      color: white;
+      font-size: 14px;
+      padding: 0px 8px;
+      text-align: center;
+    }
+  }
+}
+
+

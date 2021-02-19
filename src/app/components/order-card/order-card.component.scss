@@ -1,0 +1,79 @@
+ion-card.order-card{
+    background:#FFFFFF;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+  
+    .headerIcon{
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 25px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      .settingIcon{
+        font-size: 20px;
+        color: #444;
+        margin: 0px 4px;
+      }
+    }
+  
+    ion-card-header{
+      padding-bottom: 8px;
+      padding-top: 8px;
+    }
+  
+    .hor-seperator{
+      width: 100%;
+      height: 1px;
+      padding: 0;
+      margin: 0;
+      background-color: rgb(224, 224, 224);
+      align-self: center;
+      margin-left: 4px
+    }
+    .iconSize{
+      font-size: 22px;
+      color: var(--ion-color-primary);
+  
+    }
+    .dFlexAlignItemCenter{
+      display: flex;
+      align-items: center;
+    }
+    .fontSize{
+      font-size: 14px;
+      color: var(--ion-color-primary);
+      margin-inline-end: 8px;
+    }
+    .mainButton{
+      text-transform:capitalize;
+      min-width: 200px;
+      margin: 0px;
+    }
+
+
+    .hor-seperator{
+        width: 100%;
+        height: 1px;
+        padding: 0;
+        margin: 0;
+        background-color: rgb(224, 224, 224);
+        align-self: center;
+        margin-left: 4px
+      }
+
+      .status{
+        background-color: var(--ion-color-primary);
+        padding: 4px;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .value{
+          font-weight: bold;
+      }

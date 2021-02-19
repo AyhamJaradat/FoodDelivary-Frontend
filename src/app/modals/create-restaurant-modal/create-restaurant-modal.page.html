@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>{{modalTitle}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <div class="form-container">
+      <ion-text color="medium">
+        {{modalMessage}}
+      </ion-text>
+      <form>
+        <!-- --------------------------- Restaurant fields ---------------------------- -->
+        <ion-item lines="none" class="item-1">
+          <ion-label position="floating" class="label extraMarginBottom">
+            <strong class="align">Name
+              <ion-icon name="medical" class="required"></ion-icon>
+            </strong>
+          </ion-label>
+          <ion-input
+            [(ngModel)]="restaurant.name"
+            name="name"
+            placeholder="Your Restaurant Name"
+            class="input"
+            clear-input="true"
+          ></ion-input>
+        </ion-item>
+        <ion-item lines="none" class="item-1 ion-margin-bottom">
+          <ion-label position="floating" class="label ion-no-margin">
+            <strong class="align">Description</strong>
+          </ion-label>
+          <ion-textarea
+            class="input"
+            [(ngModel)]="restaurant.description"
+            rows="2"
+            cols="20"
+            placeholder="Brief description of the type of server food"
+            name="description"
+            clear-input="true"
+          ></ion-textarea>
+        </ion-item>
+  
+        <ion-row *ngIf="isUpdate">
+          <ion-col> </ion-col>
+          <ion-col>
+            <!-- fill="outline" -->
+            <ion-button
+              (click)="updateDetails()"
+              expand="block"
+              shape="round"
+              fill="outline"
+              >Update Details</ion-button
+            >
+          </ion-col>
+        </ion-row>
+        <ion-button
+          *ngIf="!isUpdate"
+          (click)="createRestaurant()"
+          expand="block"
+          shape="round"
+          fill="outline"
+          >Create</ion-button
+        >
+      </form>
+    </div>
+  </ion-content>
+  

@@ -1,0 +1,42 @@
+ion-card.restaurantCard{
+    background:#FFFFFF;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+ion-card.restaurantCard.deleted{
+  background:var(--biopeo-background-color);;
+}
+.hor-seperator{
+    width: 100%;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(224, 224, 224);
+    align-self: center;
+    margin-left: 4px
+  }
+  .label.title{
+    h2 {
+        font-size: 16px;
+        // font-weight: bold;
+        color: #383a3ee3;
+      }
+  }
+  .label.description{
+    h2 {
+        font-size: 0.91em;
+        // font-weight: bold;
+        color: #383a3ee3;
+        min-height: 12px; // for cases when discription is empty
+      }
+  }
+  .status{
+    background-color: var(--ion-color-primary);
+        padding: 4px;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: 500;
+  }
+
+ 
+

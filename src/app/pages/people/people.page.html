@@ -1,0 +1,86 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title>My Customers</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <!-- refresher -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- spinner -->
+    <app-spinner *ngIf="peopleService.isSpinner"></app-spinner>
+    <!-- List of Users -->
+    <ion-list *ngIf="peopleService.customersList" class="ion-no-padding">
+        <ion-card *ngFor="let customer of peopleService.customersList"   class="userCard" >
+            <ion-card-content>
+                <ion-row style="padding-inline-end: 20px;">
+                    <ion-col>
+                      <ion-row>
+                        <div class="label title">
+                          <ion-label>
+                            <h2 color="light">{{customer.full_name}}
+                            </h2>
+                          </ion-label>
+                        </div>
+                      </ion-row>
+                      <ion-row>
+                        <div class="label description">
+                          <ion-label>
+                            <h2 color="light">{{customer.email}}
+                            </h2>
+                          </ion-label>
+                        </div>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+                  <div class="hor-seperator"></div>
+                  <ion-row>
+                      <div class="block-icons">
+                       
+                          <!-- Block Button if not rated -->
+                          <ion-button 
+                            class="rateBtn ion-no-padding ion-no-margin ion-float-right"
+                              shape="round" fill="outline"
+                               (click)="blockCustomer(customer, customer.is_blocked)"
+                          >
+                              <ion-label *ngIf="!customer.is_blocked" class="buttonLabel">Block</ion-label>
+                              <ion-label *ngIf="customer.is_blocked" class="buttonLabel">Un-block</ion-label>
+                            </ion-button>
+                         
+                        </div>
+                  </ion-row> 
+              </ion-card-content>
+        </ion-card>
+   
+    </ion-list>
+  
+    <!-- Empty Message -->
+    <div *ngIf="!peopleService.isSpinner && peopleService.customersList.length==0 " class="empty-state">
+      <div class="empty-message">
+        {{emptyMessage1}}
+      </div>
+      <div class="empty-message">
+        {{emptyMessage2}}
+      </div>
+      <div class="empty-message">
+        {{emptyMessage3}}
+      </div>
+    </div>
+    <!-- Infinit Scroll -->
+    <ion-infinite-scroll threshold="70%" (ionInfinite)="loadInfiniteData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." style="text-align: center;">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div style="text-align: center;" *ngIf="peopleService.dataHolder.finished && peopleService.customersList.length>0">
+      No More Customers
+    </div>
+  
+  
+  
+  
+  </ion-content>

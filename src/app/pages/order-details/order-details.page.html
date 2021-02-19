@@ -1,0 +1,156 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Order Details Card -->
+  <ion-card class="order-card main-page-card">
+    <div class="headerIcon" *ngIf="!isInitialOrder && order">
+      #{{order.id}}
+    </div>
+    <ion-card-header>
+      <div class="dFlexAlignItemCenter">
+        <ion-icon name="cart" class="iconSize"></ion-icon>
+        <ion-label class="fontSize ion-padding-start">Order Details:</ion-label>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="isInitialOrder">
+      <div class="hor-seperator"></div>
+      <div class="ion-padding" *ngIf="isOrderLoading">
+        <list-content-loader></list-content-loader>
+      </div>
+      <div class="default-empty-content" *ngIf="orderService.initOrder.selected_meals.length==0 && !isOrderLoading">
+        <ion-row class="ion-justify-content-center">
+          <p class="ion-padding-bottom ion-padding-top ">
+            <strong>Order is empty</strong>
+            <br> Select Meals to create an Order !
+          </p>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-button class="mainButton" shape="round" expand="block" fill="outline" (click)="openRestaurantsPage()">View Restaurants</ion-button>
+        </ion-row>
+      </div>
+      <div class="real-content" *ngIf="orderService.initOrder.selected_meals.length>0 && !isOrderLoading">
+        <ion-row class="ion-justify-content-center">
+          <ion-col># Of Meals</ion-col>
+          <ion-col class="value">{{orderService.initOrder.total_num_of_meals}}</ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>Total Price:</ion-col>
+          <ion-col class="value">{{orderService.initOrder.total_price}}</ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>Restaurant:</ion-col>
+          <ion-col class="value" *ngIf="restaurantName">{{restaurantName}}</ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>Order Status:</ion-col>
+          <ion-col><span class="status">Not-Set</span></ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-button class="mainButton" shape="round" expand="block" fill="outline" (click)="confirmOrder()">Confirm Order</ion-button>
+        </ion-row>
+      </div>
+    </ion-card-content>
+
+    <ion-card-content *ngIf="!isInitialOrder">
+      <div class="hor-seperator"></div>
+      <div class="ion-padding" *ngIf="isOrderLoading">
+        <list-content-loader></list-content-loader>
+      </div>
+      <div class="default-empty-content" *ngIf="order && order.order_meals.length==0 && !isOrderLoading">
+        <ion-row class="ion-justify-content-center">
+          <p class="ion-padding-bottom ion-padding-top ">
+            <strong>Oops ... Order is empty</strong>
+            <br> Select Meals to create another Order !
+          </p>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-button class="mainButton" shape="round" expand="block" fill="outline" (click)="openRestaurantsPage()">View Restaurants</ion-button>
+        </ion-row>
+      </div>
+      <div class="real-content" *ngIf="order && order.order_meals.length>0 && !isOrderLoading">
+        <ion-row class="ion-justify-content-center">
+          <ion-col># Of Meals</ion-col>
+          <ion-col class="value">{{order.num_of_meals}}</ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>Total Price:</ion-col>
+          <ion-col class="value">{{order.total_price}}</ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>Restaurant:</ion-col>
+          <ion-col  class="value" *ngIf="restaurantName">{{restaurantName}}</ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col>Order Status:</ion-col>
+          <ion-col><span class="status">{{order.status_name}}</span></ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+            <ion-col>Created At:</ion-col>
+            <ion-col>{{order.created_at*1000 | date: "yyyy/MM/dd HH:mm:ss"}}</ion-col>
+          </ion-row>
+          <ion-row *ngIf="!isMyOrder"class="ion-justify-content-center">
+              <ion-col>Ordered By:</ion-col>
+              <ion-col class="value">{{order.user_name}}</ion-col>
+            </ion-row>
+        <!-- TODO: what button to put, disabled ot enabled for regular user or owner -->
+        <ion-row class="ion-justify-content-center">
+          <ion-button *ngIf="isShowChangeStatusBtn" class="mainButton" shape="round" expand="block" fill="outline" (click)="changeStatus()">{{changeStatusText}}</ion-button>
+        </ion-row>
+      </div>
+    </ion-card-content>
+
+  </ion-card>
+  <!-- Tabs for Meals and History cards -->
+  <!-- Tabs buttons -->
+  <ion-toolbar class="segmentToolBar">
+    <ion-segment mode="md" (ionChange)="onSegmentChanged($event)">
+
+
+      <ion-segment-button mode="md" value="meals" [checked]="segmentTab=='meals'">
+        <div class="contentCenter">
+          <ion-text slot=end class="segment_Text">Meals
+            <ion-avatar *ngIf="isInitialOrder && orderService.initOrder.selected_meals.length>0  " class="segmentCount">{{orderService.initOrder.selected_meals.length}}</ion-avatar>
+            <ion-avatar *ngIf="!isInitialOrder && order && order.order_meals.length>0  " class="segmentCount">{{order.order_meals.length}}</ion-avatar>
+          </ion-text>
+        </div>
+      </ion-segment-button>
+
+      <ion-segment-button mode="md" value="history" [checked]="segmentTab=='history'">
+        <div class="contentCenter">
+          <ion-text slot=end class="segment_Text">Actions
+            <ion-avatar *ngIf="!isInitialOrder && order && order.order_logs.length>0   " class="segmentCount">{{order.order_logs.length}}</ion-avatar>
+          </ion-text>
+        </div>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-list *ngIf="segmentTab == 'meals' && isInitialOrder " class="ion-no-padding">
+
+    <meal-card *ngFor="let meal of orderService.initOrder.selected_meals" [meal]="meal" [isMyRestaurantMeal]="!isMyOrder" [isInitialOrder]="isInitialOrder" [isInsideOrderPage]="true">
+    </meal-card>
+  </ion-list>
+
+  <ion-list *ngIf="segmentTab == 'meals' && !isInitialOrder && order " class="ion-no-padding">
+
+      <meal-card *ngFor="let meal of order.order_meals" [meal]="meal" [isMyRestaurantMeal]="!isMyOrder" [isInitialOrder]="isInitialOrder" [isInsideOrderPage]="true">
+        </meal-card>
+  
+    </ion-list>
+
+  <ion-list *ngIf="segmentTab == 'history' && !isInitialOrder && order " class="ion-no-padding">
+    <!-- Order Log card -->
+    <order-log-card *ngFor="let orderLog of order.order_logs" [orderLog]="orderLog">
+      </order-log-card>
+  </ion-list>
+
+</ion-content>

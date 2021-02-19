@@ -1,0 +1,47 @@
+<ion-card   class="restaurantCard" >
+  
+  <ion-card-content> 
+  
+    <!-- info row -->
+     <ion-row style="padding-inline-end: 20px;">
+      <ion-col>
+        <ion-row>
+          <div class="label title">
+            <ion-label>
+              <h2 color="light" style="padding: 10px 0px;">
+                  Status : <span class="status"><strong>{{orderLog.status_name}}</strong></span>
+              </h2>
+            </ion-label>
+          </div>
+        </ion-row>
+        <ion-row>
+          <div class="label description">
+            <ion-label>
+              <h2 color="light" *ngIf="orderLog.created_by_role==1">
+                  Changed By User: <strong>{{orderLog.created_by_name}}</strong>
+              </h2>
+              <h2 color="light" *ngIf="orderLog.created_by_role==2">
+                  Changed By Owner: <strong>{{orderLog.created_by_name}}</strong>
+              </h2>
+              
+            </ion-label>
+          </div>
+        </ion-row>
+        <ion-row style="    margin-top: 8px;">
+          <div class="label description">
+            <ion-label>
+              <h2 color="light">
+                  
+                  Changed At : <strong>{{orderLog.created_at*1000 | date: "yyyy/MM/dd HH:mm:ss"}}</strong>
+              </h2>
+            </ion-label>
+          </div>
+        </ion-row>
+      </ion-col>
+    </ion-row> 
+    <div class="hor-seperator"></div>
+    <ion-row>
+    </ion-row>
+    
+  </ion-card-content>
+  </ion-card>

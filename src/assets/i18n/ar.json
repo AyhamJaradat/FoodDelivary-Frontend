@@ -1,0 +1,55 @@
+{
+"GLOBAL":{
+    "PLEASE_WAIT": "Please wait...",
+    "EMAIL": "Email",
+    "PASSWORD": "Password"
+},
+"LOGIN":{
+    "TITLE": "Login",
+    "SIGN_IN": "LOGIN",
+    "LOGOUT": "Logout",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "NO_ACCOUNT": "Don't have an account yet?",
+    "ERRORS": {
+      "PASSWORD": {
+        "REQUIRED": "Password is required.",
+        "MINIMUM": "Password should be at least 6 characters",
+        "WRONG": "Email or password are wrong.",
+        "NO_PASSWORD": "You have no password set. Please login using social network, or reset your password."
+      },
+      "EMAIL": {
+        "REQUIRED": "Email is required.",
+        "INVALID": "Email is invalid."
+      }
+    },
+    "PASSWORD_RESET": {
+      "REQUEST_NOW": "Reset password",
+      "REQUEST_TITLE": "Reset Your Password",
+      "NEW_PASSWORD": "New password",
+      "REQUESTED": "<strong>Thank you,</strong><br>Please follow the instructions in the email we sent you.",
+      "ERRORS": {
+        "NOT_FOUND": "Email not found.",
+        "INVALID": "Token is invalid."
+      }
+    },
+    "REDIRECTING": "Login success! Please wait, redirecting..."
+},
+"REGISTER": {
+    "SIGN_UP": "Sign Up",
+    "SIGN_UP_NOW": "Sign up now",
+    "CREATE_ACCOUNT": "Create New Account",
+    "ALREADY_HAVE_ACCOUNT": "Already have an account",
+    "TITLE": "register",
+    "REGISTER": "register",
+    "ACCEPT_TERMS": "I accept the terms of use",
+    "DONE_TITLE": "Thank you<br>for signing up !",
+    "DONE_MESSAGE": "We have sent an email with an activation link to your email address. In order to complete the sign up process.<br><br>Please note that your registration will be completed after final approval from the community manager.",
+    "SOCIAL_REGISTER": {
+      "WITH": "Sign-Up with",
+      "FACEBOOK": "Facebook",
+      "CONNECTING_TO_SOCIAL_PROVIDER": "Please hang on, connecting to the social netowrk...",
+      "PROVIDER_ERROR": "Error connecting to social provider"
+    }
+}
+
+}

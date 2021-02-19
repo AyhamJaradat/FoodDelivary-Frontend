@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- fab placed to the bottom end -->
+  <ion-fab *ngIf="isMyRestaurant" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addNewRestaurant()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- spinner -->
+  <app-spinner *ngIf="restaurantService.isSpinner"></app-spinner>
+  <!-- List of restaurants -->
+  <ion-list *ngIf="restaurantService.restaurantsList" class="ion-no-padding">
+    <restaurant-card 
+     *ngFor="let restaurant of restaurantService.restaurantsList"
+     [restaurant]="restaurant"
+     [isMyRestaurant]="isMyRestaurant"
+     (onNeedRefresh)="refreshData($event)"
+     (click)="openRestaurantMealsPage(restaurant)"
+     
+     >
+    </restaurant-card>
+  </ion-list>
+
+  <!-- Empty Message -->
+  <div *ngIf="!restaurantService.isSpinner && restaurantService.restaurantsList.length==0 " class="empty-state">
+    <div class="empty-message">
+      {{emptyMessage1}}
+    </div>
+    <div class="empty-message">
+      {{emptyMessage2}}
+    </div>
+    <div class="empty-message">
+      {{emptyMessage3}}
+    </div>
+  </div>
+  <!-- Infinit Scroll -->
+  <ion-infinite-scroll threshold="70%" (ionInfinite)="loadInfiniteData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." style="text-align: center;">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <div style="text-align: center;" *ngIf="restaurantService.dataHolder.finished && restaurantService.restaurantsList.length>0">
+    No More restaurants
+  </div>
+
+
+
+
+</ion-content>

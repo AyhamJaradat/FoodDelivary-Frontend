@@ -1,0 +1,86 @@
+ion-content{
+  --background: var(--biopeo-background-color);
+}
+.main{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+ion-card{
+  --background: #fff;
+}
+@media screen and (min-width:768px){
+  ion-card{
+      width: 500px;
+      margin: auto;
+  }
+}
+ion-card.redirectingCard{
+  width: unset;
+  text-align: center;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.small {
+  font-size: 14px;
+  margin-top: 8px;
+  a{
+      text-decoration: unset !important;
+  }
+}
+ion-label.inputLabel{
+  color: #686868;
+}
+
+.error-message
+{
+  color: rgb(197, 1, 1);
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.signIn-button {
+    font-weight: 400;
+    color: white ;
+    height: 3.5em;
+    opacity: 1 !important;
+    text-transform: capitalize;
+    font-size: 1.2em;
+  }
+
+  .sign-up-alternative {
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  
+    .question {
+      color: gray;
+    }
+  
+    button {
+      font-size: small;
+    }
+  
+    .sign-up-button {
+      text-transform: capitalize;
+    }
+  }
+
+  .img-logo{
+    height:150px;
+    width:150px;
+}
+.logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+  

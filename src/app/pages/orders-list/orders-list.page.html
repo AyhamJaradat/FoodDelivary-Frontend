@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- fab placed to the bottom end, to User to open Current initial Order page Or Start New Order -->
+  <ion-fab *ngIf="!amIOwner &&  orderService.initOrder.selected_meals.length >0"
+    vertical="bottom" horizontal="end" slot="fixed" class="sendEndFab">
+    <ion-fab-button (click)="openInitialOrderPage()" title="Review and Complete Order">
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge color="primary">{{orderService.initOrder.total_num_of_meals}}</ion-badge>
+    </ion-fab-button>
+  </ion-fab>
+ <!-- fab placed to the bottom end, to User to Start New Order -->
+  <ion-fab *ngIf="!amIOwner &&  orderService.initOrder.selected_meals.length == 0"
+      vertical="bottom" horizontal="end" slot="fixed" class="sendEndFab">
+      <ion-fab-button (click)="openRestaurantsPage()" title="Start New Order">
+        <ion-icon name="cart"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  <!-- refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- spinner -->
+  <app-spinner *ngIf="orderService.isSpinner"></app-spinner>
+  <!-- List of orders -->
+  <ion-list *ngIf="orderService.ordersList" class="ion-no-padding">
+    <order-card *ngFor="let order of orderService.ordersList" [order]="order" [amIOwner]="amIOwner"
+      (onNeedRefresh)="refreshData($event)" (click)="openOrderDetailsPage(order)">
+    </order-card>
+  </ion-list>
+
+  <!-- Empty Message -->
+  <div *ngIf="!orderService.isSpinner && orderService.ordersList.length==0 " class="empty-state">
+    <div class="empty-message">
+      {{emptyMessage1}}
+    </div>
+    <div class="empty-message">
+      {{emptyMessage2}}
+    </div>
+    <div class="empty-message">
+      {{emptyMessage3}}
+    </div>
+  </div>
+  <!-- Infinit Scroll -->
+  <ion-infinite-scroll threshold="70%" (ionInfinite)="loadInfiniteData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." style="text-align: center;">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <div style="text-align: center;" *ngIf="orderService.dataHolder.finished && orderService.ordersList.length>0">
+    No More Orders
+  </div>
+</ion-content>

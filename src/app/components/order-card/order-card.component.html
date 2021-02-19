@@ -1,0 +1,46 @@
+<!-- Order Details Card -->
+<ion-card class="order-card">
+  <div class="headerIcon" *ngIf="order">
+    #{{order.id}}
+  </div>
+  <ion-card-header>
+    <div class="dFlexAlignItemCenter">
+      <ion-icon name="cart" class="iconSize"></ion-icon>
+      <ion-label class="fontSize ion-padding-start">Order:</ion-label>
+      <!-- Add hand icon to indecate that this order is waiting action -->
+      <ion-icon name="hand" *ngIf="amIOwner && (order.status == 1 || order.status== 3 || order.status == 4)" class="iconSize ion-padding-start"></ion-icon>
+      <ion-icon name="hand" *ngIf="!amIOwner && (order.status == 1 || order.status== 5 )" class="iconSize ion-padding-start"></ion-icon>
+    </div>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="hor-seperator"></div>
+    <div class="real-content">
+      <ion-row class="ion-justify-content-center">
+        <ion-col>Order Status:</ion-col>
+        <ion-col ><span class="status">{{order.status_name}}</span></ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col>Total # Of Meals</ion-col>
+        <ion-col class="value">{{order.num_of_meals}}</ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col>Total Price:</ion-col>
+        <ion-col class="value">{{order.total_price}}</ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col>Restaurant:</ion-col>
+        <ion-col class="value">{{order.restaurant_name}}</ion-col>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col>Created At:</ion-col>
+        <ion-col>{{order.created_at*1000 | date: "yyyy/MM/dd HH:mm:ss"}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="amIOwner"class="ion-justify-content-center">
+          <ion-col>Ordered By:</ion-col>
+          <ion-col class="value">{{order.user_name}}</ion-col>
+        </ion-row>
+    </div>
+  </ion-card-content>
+
+</ion-card>

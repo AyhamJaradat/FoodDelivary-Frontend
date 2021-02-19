@@ -1,0 +1,44 @@
+<ion-card  class="restaurantCard" >
+  <ion-card-content> 
+
+    <!-- info row -->
+     <ion-row style="padding-inline-end: 20px;">
+      <ion-col>
+        <ion-row>
+          <div class="label title">
+            <ion-label>
+              <h2 color="light">{{restaurant.name}}
+              </h2>
+            </ion-label>
+          </div>
+        </ion-row>
+        <ion-row>
+          <div class="label description">
+            <ion-label>
+              <h2 color="light">{{restaurant.description}}
+              </h2>
+            </ion-label>
+          </div>
+        </ion-row>
+      </ion-col>
+    </ion-row> 
+    <div class="hor-seperator"></div>
+    <ion-row>
+        <div class="block-icons">
+          <!-- number of record -->
+            <ion-icon slot="icon" src="assets/icon/fast-food.svg" class="peopleIcon"></ion-icon>
+            <ion-badge color="primary">{{restaurant.meals.length}}</ion-badge>
+            <!-- number of orders -->
+            <ion-icon  slot="icon"  name="cart" class="ordersIcon"></ion-icon>
+            <ion-badge color="primary">{{restaurant.num_of_orders}}</ion-badge>
+            <!-- delete -->
+            <ion-icon *ngIf="isMyRestaurant" slot="icon" name="trash" class="ion-float-right" (click)="deleteRestaurant($event)" > </ion-icon>          
+            <!-- edit -->
+            <ion-icon *ngIf="isMyRestaurant" slot="icon" name="create" class="ion-float-right ion-margin-end" (click)="editRestaurant($event)"> </ion-icon>
+            <!-- Hand icon to indecate this restaurant is in active initial order -->
+            <ion-icon *ngIf="!isMyRestaurant && orderService.initOrder.restaurant_id == restaurant.id" slot="icon" name="hand" class="ion-float-right" > </ion-icon>           
+          </div>
+    </ion-row>
+    
+  </ion-card-content>
+</ion-card>

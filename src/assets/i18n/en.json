@@ -1,0 +1,103 @@
+{
+  "GLOBAL": {
+    "PLEASE_WAIT": "Please wait...",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "FIRSTNAME": "First Name",
+    "LASTNAME": "Last Name",
+    "EDIT": "Edit" 
+  },
+  "LOGIN": {
+    "TITLE": "Login",
+    "SIGN_IN": "Login",
+    "LOGOUT": "Logout",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "NO_ACCOUNT": "Don't have an account yet?",
+    "ERRORS": {
+      "PASSWORD": {
+        "REQUIRED": "Password is required.",
+        "MINIMUM": "Password should be at least 6 characters",
+        "WRONG": "Incorrect Email or Password",
+        "NO_PASSWORD": "You have no password set. Please login using social network, or reset your password.",
+        "NOT_VALID_TOKEN":"Your reset token has expired. Repeat the reset password process from login page"
+      },
+      "EMAIL": {
+        "REQUIRED": "Email is required.",
+        "INVALID": "Email is invalid.",
+        "NOT_USED":"Provided email is not registered."
+      }
+    },
+    "PASSWORD_RESET": {
+      "REQUEST_NOW": "Reset password",
+      "REQUEST_TITLE": "Reset Your Password",
+      "NEW_PASSWORD": "New password",
+      "REQUESTED": "<strong>Thank you,</strong><br>Please follow the instructions in the email we sent you.",
+      "ERRORS": {
+        "NOT_FOUND": "Email not found.",
+        "INVALID": "Token is invalid."
+      }
+    },
+    "REDIRECTING": "Login success! Please wait, redirecting..."
+  },
+  "REGISTER": {
+    "SIGN_UP": "Sign Up",
+    "SIGN_UP_NOW": "Sign up now",
+    "CREATE_ACCOUNT": "Create New Account",
+    "ALREADY_HAVE_ACCOUNT": "Already have an account",
+    "TITLE": "register",
+    "REGISTER": "register",
+    "ACCEPT_TERMS": "I accept the terms of use",
+    "DONE_TITLE": "Thank you<br>for signing up !",
+    "DONE_MESSAGE": "We have sent an email with an activation link to your email address. In order to complete the sign up process.<br><br>Please note that your registration will be completed after final approval from the community manager.",
+    "SOCIAL_REGISTER": {
+      "WITH": "Sign-Up with",
+      "FACEBOOK": "Facebook",
+      "CONNECTING_TO_SOCIAL_PROVIDER": "Please hang on, connecting to the social netowrk...",
+      "PROVIDER_ERROR": "Error connecting to social provider"
+    },
+    "ERRORS": {
+      "EMAIL": {
+        "TAKEN": "Email is already taken, if this is your email please login."
+      },
+      "FIRSTNAME": {
+        "REQUIRED": "First Name is required."
+      },
+      "LASTNAME": {
+        "REQUIRED": "Last Name is required."
+      }
+    }
+  },
+  "PEOPLE": {
+    "FRIENDS": "Friends",
+    "SUGGESTED": "Suggested",
+    "SEARCH": "Search"
+  },
+  "EMOTIONS":{
+    "FAB":{
+      "SHOW_SENT":"My Sent Emotions",
+      "SHOW_RECIEVED":"My Recieved Emotions",
+      "SETTINGS":"Settings",
+      "SEND_EMOTION":"Send Emotion",
+      "CANOT_SEND":"Can't Send Emotion, Suggest to"
+    }
+
+  },
+  "SUGGESTIONS":{
+    "BUTTONS":{
+      "CHANGE_VIEW_SETTINGS_TO_FRIENDS":"Let Your Friends See",
+      "CHANGE_VIEW_SETTINGS_TO_ANYONE":"Let Any One See",
+      "CHANGE_SEND_SETTINGS_TO_ANYONE":"Let Any One Send",
+      "ADD_ME_AS_FRIEND":"Add me to friends"
+    }
+  },
+  "REVIEWS":{
+    "FAB":{
+      "SHOW_SENT":"My Sent Reviews",
+      "SHOW_RECIEVED":"My Recieved Reviews",
+      "SETTINGS":"Settings",
+      "SEND_REVIEW":"Write Something",
+      "CANOT_SEND":"Can't Send REview, Suggest to"
+    }
+
+  }
+}
